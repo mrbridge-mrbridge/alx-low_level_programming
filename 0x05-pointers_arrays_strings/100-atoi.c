@@ -1,4 +1,4 @@
-#include "coding.h"
+#include <stdio.h>
 
 /**
  * _atoi - function with one argument
