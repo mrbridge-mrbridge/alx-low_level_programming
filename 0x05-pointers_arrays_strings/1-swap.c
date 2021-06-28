@@ -1,4 +1,4 @@
-#include <stdio.c>
+#include <stdio.h>
 
 /**
  * swap_int - function with two int type positive argument
