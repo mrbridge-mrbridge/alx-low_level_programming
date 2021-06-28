@@ -1,7 +1,11 @@
 #include <stdio.h>
 
 /**
- * Using pointter to update value it points to
+ * reset_to_98 - function with one argument
+ * @n: int type pointer n
+ *
+ * Description: Using pointter to update value it points to 98
+ * Return: value
  */
 
 void reset_to_98(int *n)
