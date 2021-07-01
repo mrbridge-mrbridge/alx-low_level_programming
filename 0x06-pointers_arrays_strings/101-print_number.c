@@ -1,22 +1,28 @@
 #include <stdio.h>
+
 /**
- * print_number - prints an integer
- * @n:.input integer parameter
+ * print_number - using only _putchar
+ * @n: the integer to print
  *
- *
+ * Return: void
  */
 void print_number(int n)
 {
-	unsigned int i = n;
+	int i, p;
 
 	if (n < 0)
+		_putchar('-');
+	for (p = 0, i = 1000000000; i > 0; i /= 10)
 	{
-		_putchar(45);
-		i = -i;
+		int d = (n / i) % 10;
+
+		d = d < 0 ? -d : d;
+		if (d || p || i == 1)
+		{
+			_putchar(d + '0');
+			p++;
+		}
+
 	}
-	if (i / 10)
-	{
-		print_number(i / 10);
-	}
-	_putchar(i % 10 + '0');
 }
+
