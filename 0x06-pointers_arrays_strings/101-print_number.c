@@ -1,6 +1,5 @@
-#include <stdio.h>
-#define ROT13IN  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-#define ROT13OUT "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"
+#include "holberton.h"
+
 /**
  * print_number - using only _putchar
  * @n: the integer to print
