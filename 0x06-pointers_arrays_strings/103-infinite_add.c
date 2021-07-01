@@ -1,12 +1,11 @@
 #include <stdio.h>
-
 /**
- * _strlen - returns the length of a string
+ * strlen - returns the length of a string
  * @s: the string whose length to check
  *
  * Return: integer length of string
  */
-int _strlen(char *s)
+int strlen(char *s)
 {
 	int i = 0;
 
@@ -23,7 +22,7 @@ int _strlen(char *s)
  */
 char *rev_string(char *s)
 {
-	int l = _strlen(s), i = 0;
+	int l = strlen(s), i = 0;
 	char t;
 
 	for (i = 0; i < l / 2; i++)
@@ -46,7 +45,7 @@ char *rev_string(char *s)
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int l1 = _strlen(n1), l2 = _strlen(n2), i = 0, a, b, c = 0;
+	int l1 = strlen(n1), l2 = strlen(n2), i = 0, a, b, c = 0;
 
 	for (l1--, l2--, size_r--; l1 >= 0 || l2 >= 0 || c; l1--, l2--, i++)
 	{
