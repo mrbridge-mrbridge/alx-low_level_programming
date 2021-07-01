@@ -1,5 +1,8 @@
 #include "holberton.h"
 
+#define ROT13IN  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+#define ROT13OUT "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"
+
 /**
  * print_number - using only _putchar
  * @n: the integer to print
@@ -25,4 +28,3 @@ void print_number(int n)
 
 	}
 }
-
