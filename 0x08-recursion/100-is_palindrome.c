@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "holberton.h"
 /**
  * is_palindrome - find a palindrome string
  * @s: string for check
