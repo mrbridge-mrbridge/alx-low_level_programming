@@ -1,9 +1,8 @@
 #include "holberton.h"
 /**
- * is_palindrome - find a palindrome string
- * @s: string for check
- *
- * Return: 1 if is palindrome, otherwise 0
+ * _strlen_recursion - returns the length of a string.
+ * @s: the string to count
+ * Return: length of the string
  */
 
 int _strlen_recursion(char *s)
