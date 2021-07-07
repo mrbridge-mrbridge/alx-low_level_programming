@@ -7,28 +7,31 @@
  */
 int main(void)
 {
-	int f = '0';
-	int s = '0';
+	int i = '0';
+	int j = '0';
 
-	while (f <= '9')
+	while (i <= '9')
 	{
-		s = '0';
-		while (s <= '9')
+		while (j <= '9')
 		{
-			putchar(f);
-			putchar(s);
-			if (s == '9' && f == '9')
+			putchar(i);
+			putchar(j);
+			if (j == '9' && i == '9')
 			{
+				putchar('\n');
 			}
 			else
 			{
 				putchar(',');
 				putchar(' ');
 			}
-			s++;
+			j++;
 		}
-		f++;
+		if (j >= '9')
+		{
+			j = '0';
+		}
+		i++;
 	}
-	putchar('\n');
 	return (0);
 }
