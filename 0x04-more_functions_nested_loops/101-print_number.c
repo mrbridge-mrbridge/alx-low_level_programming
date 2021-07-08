@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 /**
  * print_number - Print any number one character at a time
  * @n: Number to print
