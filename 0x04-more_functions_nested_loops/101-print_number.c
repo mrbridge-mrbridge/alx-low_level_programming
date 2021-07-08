@@ -1,38 +1,50 @@
 #include "holberton.h"
-/**
- * print_number - prints a number
- * @n: Input number
- */
 
+/**
+ * print_number - Print any number one character at a time
+ * @n: Number to print
+ *
+ * Return: Nothing
+ */
 void print_number(int n)
 {
-	long len, res, i, temp, expo;
+	long hn;
+	long n2 = n;
 
-	res = n;
-	expo = len =  1;
-/*Check negatives*/
-	if (res < 0)
+	if (n2 < 0)
 	{
-		res *= -1;
 		_putchar('-');
+		n2 *= -1;
 	}
-
-/**/
-	temp = res;
-	while (temp >= 10)
+	if (n2 / 100000 != 0)
 	{
-		len++;
-		temp /= 10;
+		hn = n2 / 100000;
+		_putchar(hn / 10000 % 10 + '0');
+		_putchar(hn / 1000 % 10 + '0');
+		_putchar(hn / 100 % 10 + '0');
+		_putchar(hn / 10 % 10 + '0');
+		_putchar(hn % 10 + '0');
 	}
-
-/*Create Exponent*/
-	for (i = 1; i < len; i++)
-		expo *= 10;
-/*Main */
-	while (expo > 1)
-	{
-		_putchar((res / expo) % 10 + '0');
-		expo /= 10;
-	}
-	_putchar(res % 10 + '0');
+		hn = n2 % 100000;
+		if (hn / 10000 % 10 != 0)
+		{
+			_putchar(hn / 10000 % 10 + '0');
+			_putchar(hn / 1000 % 10 + '0');
+			_putchar(hn / 100 % 10 + '0');
+			_putchar(hn / 10 % 10 + '0');
+		}
+		else if (hn / 1000 % 10 != 0)
+		{
+			_putchar(hn / 1000 % 10 + '0');
+			_putchar(hn / 100 % 10 + '0');
+			_putchar(hn / 10 % 10 + '0');
+		}
+		else if (hn / 100 % 10 != 0)
+		{
+			_putchar(hn / 100 % 10 + '0');
+			_putchar(hn / 10 % 10 + '0');
+		}
+		else if (hn / 10 % 10 != 0)
+			_putchar(hn / 10 % 10 + '0');
+		_putchar(hn % 10 + '0');
 }
