@@ -1,15 +1,13 @@
-#include "holberton.h"
-
+#include <stdio.h>
 /**
- * _isupper - check for uppercase character
- * @c: The character to print
+ * _isupper - Find if a given letter is upper case
+ * @c: the given letter
  *
- * Return: 1 if "c" is uppercase and 0 otherwise
+ * Return: Return 1 if c is uppercase, 0 if otherwise
  */
 int _isupper(int c)
 {
-	if  (c >= 'A' && c <= 'Z')
+	if (c >= 'A' && c <= 'Z')
 		return (1);
-	else
-		return (0);
+	return (0);
 }
