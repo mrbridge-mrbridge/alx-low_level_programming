@@ -1,50 +1,42 @@
-#include "holberton.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "holberton.h"
 /**
- * *argstostr - convert arguments on command line to strings
- * @ac: int type
- * @av: pointer to array
- * Return: arguments as strings
+ * argstostr - main entry
+ * @ac: int input
+ * @av: double pointer array
+ * Return: 0
  */
-
 char *argstostr(int ac, char **av)
 {
-	int size, count, count1, count2 = 0;
-	char *ptr;
+	int i, n, k = 0, len = 0;
+	char *str;
 
 	if (ac == 0 || av == NULL)
-	{
 		return (NULL);
-	}
 
-	for (count = 0; count < ac; count++)
+	for (i = 0; i < ac; i++)
 	{
-		for (count1 = 0; av[count][count1] != '\0'; count1++)
-		{
-			size += 1;
-		}
-		size += 1;
+		for (n = 0; av[i][n]; n++)
+			len++;
 	}
-	size += 1;
+	len += ac;
 
-	ptr = malloc(sizeof(char) * size);
-	if (ptr == NULL)
-	{
-		free(ptr);
+	str = malloc(sizeof(char) * len + 1);
+	if (str == NULL)
 		return (NULL);
-	}
-	for (count = 0; count < ac; count++)
+
+	for (i = 0; i < ac; i++)
 	{
-		for (count1 = 0; av[count][count1] != '\0'; count1++)
+		for (n = 0; av[i][n]; n++)
 		{
-			ptr[count2] = av[count][count1];
-			count2++;
+			str[k] = av[i][n];
+			k++;
 		}
-		ptr[count2] = '\n';
-		count2++;
+		if (str[k] == '\0')
+		{
+			str[k++] = '\n';
+		}
 	}
-	ptr[count2] = '\0';
-	return (ptr);
+	return (str);
 }
