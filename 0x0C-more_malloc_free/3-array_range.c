@@ -1,47 +1,31 @@
-  
 #include "holberton.h"
+#include <stdio.h>
 #include <stdlib.h>
 /**
- * array_fill - Fills the integer array with a range of numbers
- * @arr: Integer array to fill
- * @min: First nubmer in range (included)
- * @max: Last number in range (included)
- * Return: Pointer to the filled array
+ * array_range - array of integers.
+ * @min: input min.
+ * @max: input max.
+ *
+ * Return: array.
  */
-
-int *array_fill(int *arr, int min, int max)
-{
-	int i;
-
-	for (i = 0; i + min <= max; i++)
-	{
-		arr[i] = i + min;
-	}
-
-	return (arr);
-}
-
-/**
- * array_range - Creates an integer array and fills it with specified numbers
- * @min: Lowest integer
- * @max: Max integer
- * Return: Pointer to the integer array
- */
-
 int *array_range(int min, int max)
 {
-	int *out;
-	int size;
+	int *a;
+	int i, full;
 
+	full = (max - min) + 1;
 	if (min > max)
+	{
 		return (NULL);
-
-	size = 1 + (max - min);
-	out = malloc(size * sizeof(int));
-	if (out == NULL)
+	}
+	a = malloc(sizeof(int) * full);
+	if (a == NULL)
+	{
 		return (NULL);
-
-	out = array_fill(out, min, max);
-
-	return (out);
+	}
+	for (i = 0; min <= max; i++)
+	{
+		a[i] = min++;
+	}
+	return (a);
 }
