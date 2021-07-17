@@ -104,12 +104,12 @@ int main(int argc, char **argv)
 		if (r[c])
 			a = 1;
 		if (a)
-			_putchar(r[c] + '0');
+			putchar(r[c] + '0');
 		c++;
 	}
 	if (!a)
-		_putchar('0');
-	_putchar('\n');
+		putchar('0');
+	putchar('\n');
 	free(r);
 	return (0);
 }
