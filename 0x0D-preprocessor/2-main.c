@@ -2,8 +2,9 @@
 
 
 /**
- * prints name of file compiled from
+ * main - prints name of file compiled from
  * followed by new line
+ *Return: everything worked okay
  */
 
 int main()
