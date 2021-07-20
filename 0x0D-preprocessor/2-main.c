@@ -4,7 +4,7 @@
 /**
  * main - prints name of file compiled from
  * followed by new line
- *Return: everything worked okay
+ * Return: everything worked okay
  */
 
 int main()
