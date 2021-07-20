@@ -8,6 +8,6 @@
 
 int main()
 {
-	printf("2-main.c\n");
-	return 0
+	printf("%s\n", _BASE_FILE_);
+	return 0;
 }
