@@ -1,21 +1,22 @@
-#include<stdio.h>
+#include <stdio.h>
 
 /**
- * main - Print alphabet w/o two letters
+ * main - output alphabeths except e & q
  *
- * Return: 0
+ * Return 0
  */
+
 int main(void)
 {
-	char z = 'a';
+	char alph;
 
-	while (z <= 'z')
+	for(alph = 'a'; alph <= 'z'; alph++)
 	{
-		if (z != 'q' && z != 'e')
-		{
-			putchar(z);
-		}
-		z++;
+		if(alph == 'e')
+			continue;
+		if(alph == 'q')
+			continue;
+		putchar(alph);
 	}
 	putchar('\n');
 	return (0);
