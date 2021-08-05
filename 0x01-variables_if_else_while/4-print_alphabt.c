@@ -3,7 +3,7 @@
 /**
  * main - output alphabeths except e & q
  *
- * Return 0
+ * Return - 0
  */
 
 int main(void)
