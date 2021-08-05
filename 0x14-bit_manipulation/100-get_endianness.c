@@ -5,12 +5,16 @@
  *
  * Return: 0 if big endian, 1 if little endian
  */
+
 int get_endianness(void)
 {
-	int x;
-	char *y;
+	char num;
+	char *ptr;
 
-	x = 1;
-	y = (char *)&x;
-	return (*y);
+	num = '1';
+	ptr = &num;
+	if (*ptr == 0)
+		return (0);
+	else
+		return (1);
 }
