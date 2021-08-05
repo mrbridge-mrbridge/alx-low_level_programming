@@ -5,33 +5,27 @@
  *
  * Return: 0
  */
+
 int main(void)
 {
-	int i = '0';
-	int j = '0';
+	int a, b, c;
 
-	while (i <= '9')
+	for (a = '0'; a <= '8'; a++)
 	{
-		while (j <= '9')
+		for (b = '1'; b <= '9'; b++)
 		{
-			if (!(i > j || i == j))
+			if (a !=b && a < b)
 			{
-				putchar(i);
-				putchar(j);
-				if (i == '8' && j == '9')
-				{
-					putchar('\n');
-				}
-				else
+				putchar(a);
+				putchar(b);
+				if (a < '8')
 				{
 					putchar(',');
 					putchar(' ');
 				}
 			}
-			j++;
 		}
-		j = '0';
-		i++;
 	}
+	putchar('\n');
 	return (0);
 }
