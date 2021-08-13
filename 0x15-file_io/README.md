@@ -1,4 +1,4 @@
-### 0x15. C - File I/O
+#### 0x15. C - File I/O
 
 ### Task 0
 
@@ -23,7 +23,6 @@ Create a function that creates a file.
 * if the file already exists, truncate it
 * if filename is NULL return -1
 * if text_content is NULL create an empty file
-
 
 ### Task 2
 
@@ -53,7 +52,6 @@ Write a program that copies the content of a file to another file.
 * Permissions of the created file: rw-rw-r--. If the file already exists, do not change the permissions
 * You must read 1,024 bytes at a time from the file_from to make less system calls. Use a buffer
 * You are allowed to use dprintf
-
 
 
 ### Task 4
