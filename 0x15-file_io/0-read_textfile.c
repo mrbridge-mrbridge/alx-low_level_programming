@@ -1,54 +1,48 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "holberton.h"
+#include "main.h"
 
 /**
-* main - program that copies the content of a file to another file
-* @argc: num argument
-* @argv: string argument
-* Return: 0
+ * read_textfile - a function that reads a text file and prints it
+ *                to POSIX standard output.
+ *
+ * @filename: is the file to read
+ * @letters: number of letters to read and print from file
+ *
+ * Return: 0 if it fails or actual number of letters it could
+ *         read and print
 */
+ssize_t read_textfile(const char *filename, size_t letters)
+{
+	int file;
+	ssize_t read_check, wcount;
+	char *buffer;
 
-int main(int argc, char *argv[])
-{
-int file_from, file_to;
-int num1 = 1024, num2 = 0;
-char buf[1024];
+	if (filename == NULL) /*check if file is present*/
+		return (0);
 
-if (argc != 3)
-	dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
-file_from = open(argv[1], O_RDONLY);
-if (file_from == -1)
-{
-	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-	exit(98);
-}
-file_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR
-	| S_IRGRP | S_IWGRP | S_IROTH);
-if (file_to == -1)
-{
-	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-	close(file_from), exit(99);
-}
-while (num1 == 1024)
-{
-	num1 = read(file_from, buf, 1024);
-	if (num1 == -1)
+	file = open(filename, O_RDONLY); /*open file*/
+
+	if (file == -1)
+		return (0);
+
+	/*get the size of buffer from number of letters*/
+	buffer = malloc(sizeof(char) * letters);
+	if (buffer == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
+		free(buffer);
+		return (0);
 	}
-	num2 = write(file_to, buf, num1);
-	if (num2 < num1)
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
+
+	read_check = read(file, buffer, letters); /*read file*/
+	if (read_check == -1) /*check if read failed*/
+		return (0);
+
+	wcount = write(STDOUT_FILENO, buffer, read_check); /*write to POSIX*/
+	if (wcount == -1 || read_check != wcount) /*check if write failed*/
+		return (0);
+
+	free(buffer);
+
+	close(file); /*close file*/
+
+	return (wcount);
 }
-
-if (close(file_from) == -1)
-	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from), exit(100);
-
-if (close(file_to) == -1)
-	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to), exit(100);
-
-return (0);
-}
-

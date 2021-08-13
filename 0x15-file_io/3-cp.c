@@ -1,54 +1,77 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "main.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 /**
-* main - program that copies the content of a file to another file
-* @argc: num argument
-* @argv: string argument
-* Return: 0
-*/
+ * __exit - prints error messages and exits with exit value
+ * @error: num is either exit value or file descriptor
+ * @s: str is a name, either of the two filenames
+ * @fd: file descriptor
+ * Return: 0 on success
+ **/
+int __exit(int error, char *s, int fd)
+{
+	switch (error)
+	{
+	case 97:
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(error);
+	case 98:
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", s);
+		exit(error);
+	case 99:
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", s);
+		exit(error);
+	case 100:
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		exit(error);
+	default:
+		return (0);
+	}
+}
 
+/**
+ * main - copies one file to another
+ * @argc: should be 3 (./a.out copyfromfile copytofile)
+ * @argv: first is file to copy from (fd_1), second is file to copy to (fd_2)
+ * Return: 0 (success), 97-100 (exit value errors)
+ */
 int main(int argc, char *argv[])
 {
-int file_from, file_to;
-int num1 = 1024, num2 = 0;
-char buf[1024];
+	int fd_1, fd_2, n_read, n_wrote;
+	char *buffer[1024];
 
-if (argc != 3)
-	dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
-file_from = open(argv[1], O_RDONLY);
-if (file_from == -1)
-{
-	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-	exit(98);
-}
-file_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR
-	| S_IRGRP | S_IWGRP | S_IROTH);
-if (file_to == -1)
-{
-	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-	close(file_from), exit(99);
-}
-while (num1 == 1024)
-{
-	num1 = read(file_from, buf, 1024);
-	if (num1 == -1)
+	if (argc != 3)
+		__exit(97, NULL, 0);
+
+	/*sets file descriptor for copy-to file*/
+	fd_2 = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	if (fd_2 == -1)
+		__exit(99, argv[2], 0);
+
+	/*sets file descriptor for copy-from file*/
+	fd_1 = open(argv[1], O_RDONLY);
+	if (fd_1 == -1)
+		__exit(98, argv[1], 0);
+
+	/*reads original file as long as there's more than 0 to read*/
+	/*copies/writes contents into new file */
+	while ((n_read = read(fd_1, buffer, 1024)) != 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
+		if (n_read == -1)
+			__exit(98, argv[1], 0);
+
+		n_wrote = write(fd_2, buffer, n_read);
+		if (n_wrote == -1)
+			__exit(99, argv[2], 0);
 	}
-	num2 = write(file_to, buf, num1);
-	if (num2 < num1)
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
-}
 
-if (close(file_from) == -1)
-	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from), exit(100);
-
-if (close(file_to) == -1)
-	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to), exit(100);
-
-return (0);
+	close(fd_2) == -1 ? (__exit(100, NULL, fd_2)) : close(fd_2);
+	close(fd_1) == -1 ? (__exit(100, NULL, fd_1)) : close(fd_1);
+	return (0);
 }
 

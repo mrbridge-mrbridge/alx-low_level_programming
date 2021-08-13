@@ -1,37 +1,37 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "main.h"
 
 /**
- * create_file - function that creates a file.
- * @filename: variable pointer
- * @text_content: content file
- * Description: Create a function that creates a file.
- * Return: 1 on success, -1 on failure
- */
-
+ * create_file - a function that creates a file
+ *
+ * @filename: name of file to create
+ * @text_content: string to write to file
+ *
+ * Return: 1 on success OR -1 on faliure
+*/
 int create_file(const char *filename, char *text_content)
 {
-	int i = 0, file;
+	int file, write_status, words = 0;
 
-	if (filename == NULL)
+	if (filename == NULL) /*check if filename is present*/
 		return (-1);
 
-	if (text_content == NULL)
-		text_content = "";
+	/*open file by creating it and if it exists write but truncate to 0*/
+	file = open(filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
+	if (file == -1) /*check if file creation was a success*/
+		return (-1);
 
-
-	while (text_content[i] != '\0')
+	if (text_content) /*write content to file if its not NULL*/
 	{
-		i++;
+		while (text_content[words] != '\0') /*find number of words*/
+			words++;
+
+		/*write to file*/
+		write_status = write(file, text_content, words);
+		if (write_status == -1) /*check if write was a success*/
+			return (-1);
 	}
 
-	file = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
-
-	if (file == -1)
-		return (-1);
-
-	write(file, text_content, i);
-
+	close(file); /*close file*/
 	return (1);
 }
+
