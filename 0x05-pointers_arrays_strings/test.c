@@ -9,25 +9,25 @@
 
 void print_rev(char *s)
 {
-	int i = 0, j = 0;
+        int index = 0, len = 0;
 
-	while (s[i] != '\0')
-	{
-		j++;
-		i++;
-	}
+        while (s[index++]) //!= 0)
+        {
+                //index++;
+		len++;
+        }
 
-	while (*s)
-	{
-		putchar(s[j]);
-		j--;
-	}
+        for (index = len - 1; index >= 0; index--)
+        {
+                putchar(s[index]);
+        }
+        putchar('\n');
 }
 
 int main()
 {
 	char *s;
-	s[] = {"Juantuah"};
+	s = "Juantuah";
 	print_rev(s);
 
 	return (0);
