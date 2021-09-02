@@ -18,7 +18,7 @@ void prnt_rev(char *s)
 
 	for (index = len - 1; index >= 0; index--)
 	{
-		_putchar(s[index]);
+		putchar(s[index]);
 	}
-	_putchar('\n');
+	putchar('\n');
 }
