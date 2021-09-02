@@ -7,19 +7,18 @@
  * Return: string
  */
 
-void print_rev(char *s)
+void prnt_rev(char *s)
 {
-	int i = 0, j = 0;
+	int index, len = 0;
 
-	while (s[i] != '\0')
+	while (s[index++])
 	{
-		j++;
-		i++;
+		len++;
 	}
 
-	while (*s)
+	for (index = len - 1; index >= 0; index--)
 	{
-		putchar(s[j]);
-		j--;
+		_putchar(s[index]);
 	}
+	_putchar('\n');
 }

@@ -1,20 +1,34 @@
 #include <stdio.h>
 
 /**
- * _strlen - function with 1 argument
- * @s: char type pointer
+ * print_rev - prints in reverse
+ * @s: string to be printed
  *
- * Description: strlen similar function to return length
  * Return: string
  */
-int _strlen(char *s)
-{
-	int i;
 
-	i = 0;
-	while (*(s + i) != '\0')
+void print_rev(char *s)
+{
+	int i = 0, j = 0;
+
+	while (s[i] != '\0')
 	{
+		j++;
 		i++;
 	}
-	return (i);
+
+	while (*s)
+	{
+		putchar(s[j]);
+		j--;
+	}
+}
+
+int main()
+{
+	char *s;
+	s[] = {"Juantuah"};
+	print_rev(s);
+
+	return (0);
 }
