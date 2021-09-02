@@ -1,18 +1,21 @@
 #include <stdio.h>
+#include "main.h"
 
 /**
- * _puts - function with one argument
- * @str: one char type argument
+ * _puts - print out a string
+ * @str: string to be printed
  *
- * Description: print a string follow by a new line to stdout
- * Return: none
+ * Return: string
  */
+
 void _puts(char *str)
 {
+	int i = 0;
+
 	while (*str)
 	{
-		putchar(*str);
-		str++;
+		_putchar(str[i]);
+		i++;
 	}
-	putchar('\n');
+	_putchar('\n');
 }
