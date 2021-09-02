@@ -19,7 +19,7 @@
 
 	while (*s)
 	{
-		_putchar(s[j]);
+		putchar(s[j]);
 		j--;
 	}
 }
