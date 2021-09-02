@@ -2,7 +2,7 @@
 
 /**
  * _strlen - function of a pointer to string
- * @s - pointer to string
+ * @s: pointer to string
  * Description: returns the length of the string
  *
  * Return: intgeger value
